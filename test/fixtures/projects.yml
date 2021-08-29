@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  RxC: MyString
+  project_type: MyString
+  state: MyString
+  workflow_date: 2021-08-29
+  ticket_level: 1
+  process_step_id: 1
+  hours_spent: 1.5
+  days_spent: 1.5
+  notes: MyString
+  user_id: 1
+
+two:
+  RxC: MyString
+  project_type: MyString
+  state: MyString
+  workflow_date: 2021-08-29
+  ticket_level: 1
+  process_step_id: 1
+  hours_spent: 1.5
+  days_spent: 1.5
+  notes: MyString
+  user_id: 1
