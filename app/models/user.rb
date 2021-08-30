@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :categories       
   has_many :projects
+  has_many :phases
+
 
   def first_name
   end
