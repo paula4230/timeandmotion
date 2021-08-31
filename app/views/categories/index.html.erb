@@ -1,20 +1,16 @@
 <div>
+<%= link_to 'Add Category', new_category_path %>
   <table>
   <tbody>
     <% @categories.each do |category| %>
-      <tr>
+    <tr>
         <td>
             <%= category.intent%>
             <%= category.status%>
             <%= category.due%>
-        <%# <%= link_to image_tag('edit.png'),edit_category_path(category), id:"edit" %>
-        <%# <td><%= link_to 'View Tasks', category_tasks_path(category)%> 
-          <%# <%= link_to image_tag('delete.png'),category_path(category), method: :delete, data: { confirm: 'Are you sure?' }%> 
-        <%# <td><%= link_to 'Add Task', new_category_task_path(category) %>
         </td>
-      <%# <td class="category-holder"><%= link_to category.title, category_tasks_path(category), id:"category-name"%>
-      </tr>
+    </tr>
     <% end %>
   </tbody>
   </table>
-  </div>
+</div>

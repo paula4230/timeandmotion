@@ -14,13 +14,23 @@ class CategoriesController < ApplicationController
     def create
         @category = current_user.categories.build(category_params)
       
-    
         if @category.save
-          redirect_to root_path, notice: "Category was successfully created." 
+          redirect_to categories_path, notice: "Category was successfully created." 
         else
           render :new, status: :unprocessable_entity 
         end
     end 
+
+    def edit
+    end
+  
+    def update
+      if @category.update(category_params)
+          redirect_to categories_path, notice: "Task was successfully updated." 
+      else
+          render :edit
+      end
+    end
     
     private
     def set_category

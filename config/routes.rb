@@ -7,5 +7,7 @@ Rails.application.routes.draw do
       resources :phases
     end
   end
+
+  post '/categories/:id', to: 'categories#update'
   
 end
