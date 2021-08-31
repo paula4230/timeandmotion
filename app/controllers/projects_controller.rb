@@ -8,6 +8,25 @@ class ProjectsController < ApplicationController
         @projects = @category.projects
     end
 
+    def new
+        @project = @category.projects.build
+    end
+
+    def show
+    end
+
+    def create
+        @project = @category.projects.build(project_params)
+        if @project.save
+            redirect_to category_projects_path, notice: "Project was successfully created." 
+        else
+            render :new
+        end
+    end
+    
+    def edit
+    end
+
     private
     def get_category
         @category = current_user.categories.find(params[:category_id])
