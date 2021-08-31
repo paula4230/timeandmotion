@@ -1,0 +1,18 @@
+
+<%= form_with scope: :phase, model: [@project, @phase], local:true do |f|%>
+      <div class="field-task">
+        <%= f.label :step %>
+        <%= f.text_field :step %>
+    </div>
+
+    <div class="field-task">
+        <%= f.number_field :user_id, id: :category_user_id, value: current_user.id, type: :hidden %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+
+<% end %>
+
+
