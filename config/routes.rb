@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users
   
-  resources :categories do
+  # resources :categories do
     resources :projects do
       resources :phases
     end
-  end
+  # end
 
-  post '/categories/:id', to: 'categories#update'
+  # post '/categories/:id', to: 'categories#update'
   
 end
