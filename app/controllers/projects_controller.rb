@@ -1,26 +1,25 @@
 class ProjectsController < ApplicationController
     before_action :authenticate_user!
-    before_action :get_category
-
-    before_action :is_current_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_project, only: %i[ show edit update destroy ]
+    before_action :is_current_user, only: %i[ show edit update destroy ]
 
     def index
-        @projects = @category.projects
+        @projects = current_user.projects
     end
 
     def new
-        @project = @category.projects.build
+        @project = current_user.projects.build
     end
 
     def show
     end
 
     def create
-        @project = @category.projects.build(project_params)
+        @project =  current_user.projects.build(project_params)
         if @project.save
-            redirect_to category_projects_path, notice: "Project was successfully created." 
+            redirect_to projects_path, notice: "Project was successfully created." 
         else
-            render :new
+            render :new, status: :unprocessable_entity 
         end
     end
     
@@ -28,13 +27,13 @@ class ProjectsController < ApplicationController
     end
 
     private
-    def get_category
-        @category = current_user.categories.find(params[:category_id])
+    def set_project
+        @project = current_user.projects.find(params[:id])
         # redirect_to categories_path, notice: "Not allowed to do that" if @category.nil?
     end
 
     def is_current_user
-        @project = @category.projects.find(params[:id])
+        @project = current_user.projects.find_by(params[:id])
         # redirect_to categories_path, notice: "Not allowed to do that" if @project.nil?
     end
 
