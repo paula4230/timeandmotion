@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # end
 
   # post '/categories/:id', to: 'categories#update'
+
+  # post '/projects/:id/phases', to: 'phases#create'
   
 end

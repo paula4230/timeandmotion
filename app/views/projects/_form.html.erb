@@ -1,40 +1,45 @@
 
-<%= form_with scope: :project, model: [@category, project], local:true do |f|%>
-      <div class="field-task">
-        <%= f.label :RxC %>
+<%= form_with(model: project, method: :post) do |f|%>
+      <div>
+        <%= f.label 'RxC', :RxC %>
         <%= f.text_field :RxC %>
     </div>
 
-    <div class="field-task">
+    <div>
         <%= f.label :project_type %>
         <%= f.text_area :project_type %>
     </div>
 
-    <div class="field-task">
+    <div >
         <%= f.label :state %>
         <%= f.text_area :state %>
     </div>
 
-    <div class="field-task">
+    <div>
         <%= f.label :ticket_level %>
         <%= f.number_field :ticket_level %>
     </div>
 
-    <div class="field-task">
+    <div>
         <%= f.label :classification %>
         <%= f.text_area :classification %>
     </div>
 
-    <div class="field-task">
+    <div>
+        <%= f.label :intent %>
+        <%= f.text_area :intent %>
+    </div>
+
+    <div>
         <%= f.label :workflow_date %>
         <%= f.date_field :workflow_date %>
     </div>
 
-    <div class="field-task">
-        <%= f.number_field :user_id, id: :category_user_id, value: current_user.id, type: :hidden %>
+    <div>
+        <%= f.number_field :user_id, id: :project_user_id, value: current_user.id, type: :hidden %>
     </div>
 
-    <div class="actions">
+    <div>
         <%= f.submit %>
     </div>
 
