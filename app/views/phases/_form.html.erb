@@ -2,7 +2,7 @@
 <%= form_with scope: :phase, model: [@project, @phase], local:true do |f|%>
       <div class="field-task">
         <%= f.label :step %>
-        <%= f.text_field :step %>
+        <%= f.select :step, ['Planning and Reviewing','Implementation', 'Undergoing HDL', 'Testing and Validation'] %>
     </div>
 
     <div class="field-task">
