@@ -1,18 +1,21 @@
 class PhasesController < ApplicationController
     before_action :authenticate_user!
     before_action :get_project
+    before_action :is_current_user, only: %i[ update_start update_end ]
+
 
     def index
+
         @phases = @project.phases
     end 
 
     def new
+
         @phase = @project.phases.build
     end
 
-
-
     def create
+        
         @phase = @project.phases.build(phase_params)
 
         if @phase.save
@@ -21,6 +24,24 @@ class PhasesController < ApplicationController
             render :new
         end
     end
+
+    def update_start
+        # @phase.update(phase_params)
+        if @phase.start_time == nil
+            if @phase.update(start_time: Time.now)
+                redirect_to project_phases_path
+            end
+        elsif @phase.start_time != nil
+            update_end
+        end
+    end 
+
+    def update_end
+        # @phase.update(phase_params)
+       if @phase.update(end_time: Time.now)
+            redirect_to project_phases_path
+       end
+    end 
 
     private
 
@@ -41,8 +62,5 @@ class PhasesController < ApplicationController
     def phase_params
         params.require(:phase).permit(:step, :start_time, :end_time, :durationinmin, :remarks, :project_id, :user_id)
     end
-
-
-
 
 end
