@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     end
   # end
 
-  patch '/projects/:project_id/phases/:id' => 'phases#update_start', :as => 'update_start'
   patch '/projects/:project_id/phases/:id' => 'phases#update_end', :as => 'update_end'
+  patch '/projects/:project_id/phases/:id' => 'phases#update_start', :as => 'update_start'
+  
   
 end
