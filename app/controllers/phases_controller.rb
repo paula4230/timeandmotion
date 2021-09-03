@@ -27,8 +27,8 @@ class PhasesController < ApplicationController
 
     def update_start
         # @phase.update(phase_params)
-        if @phase.start_time == nil
-            if @phase.update(start_time: Time.now)
+        if @phase.start_time == nil     
+            if @phase.update(start_time: Time.current.ceil(2))
                 redirect_to project_phases_path
             end
         elsif @phase.start_time != nil
@@ -38,11 +38,19 @@ class PhasesController < ApplicationController
 
     def update_end
         # @phase.update(phase_params)
-       if @phase.update(end_time: Time.now)
-            redirect_to project_phases_path
-       end
-    end 
+        if @phase.start_time == nil 
+            update_start
+        elsif @phase.start_time != nil    
+            if @phase.update(end_time: Time.current.ceil(2))
+                
+                @durationinmin = ((@phase.start_time - @phase.end_time)*(-1))/60
 
+                @phase.update(durationinmin: @durationinmin)
+
+                redirect_to project_phases_path
+            end
+        end 
+    end    
     private
 
     def get_project
