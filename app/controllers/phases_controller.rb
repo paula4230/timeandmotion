@@ -5,17 +5,16 @@ class PhasesController < ApplicationController
 
 
     def index
-
         @phases = @project.phases
+        @sum = @phases.group(:project_id).sum(:durationinmin)
+        @final = @sum.values
     end 
 
     def new
-
         @phase = @project.phases.build
     end
 
-    def create
-        
+    def create        
         @phase = @project.phases.build(phase_params)
 
         if @phase.save
@@ -51,6 +50,8 @@ class PhasesController < ApplicationController
             end
         end 
     end    
+
+    
     private
 
     def get_project

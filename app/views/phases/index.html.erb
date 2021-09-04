@@ -31,6 +31,8 @@
         <td><%= phase.id %></td>
     </tr>
     <% end %>
-</table>
 
+</table>
+Total in Mins: <%= @final[0] %>
+<td><%= render partial: '/phases/finalize_phases', locals: { project: @project } %></td>
 
