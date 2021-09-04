@@ -1,11 +1,10 @@
 class ProjectsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_project, only: %i[ show edit update destroy ]
+    before_action :set_project, only: %i[ show edit update destroy]
     # before_action :is_current_user, only: %i[ show edit update destroy ]
 
     def index
         @projects = current_user.projects
-        @projectxx = Project.where(intent:'xx')
     end
 
     def new
@@ -25,6 +24,21 @@ class ProjectsController < ApplicationController
     end
     
     def edit
+    end
+
+    def finalize_phases
+        @project = current_user.projects.find(params[:project_id])
+        @phases = @project.phases
+
+        @sum = @phases.group(:project_id).sum(:durationinmin)
+        @final = @sum.values
+
+        @hours_spent = @final[0]/60
+        if @project.update(hours_spent: @hours_spent)
+            redirect_to projects_path, notice: "Finalized." 
+        else
+            render :new, status: :unprocessable_entity 
+        end
     end
 
     private

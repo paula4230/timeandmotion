@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   #PATCH	/projects/:project_id/phases/:id(.:format)	phases#update_start
   # resources :categories do
-    resources :projects do
+    resources :projects, except: [:update] do
       resources :phases, except: [:update]
     end
   # end
@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   patch '/projects/:project_id/phases/:id' => 'phases#update_end', :as => 'update_end'
   patch '/projects/:project_id/phases/:id' => 'phases#update_start', :as => 'update_start'
   
+  patch '/projects/:project_id' => 'projects#finalize_phases', :as => 'finalize_phases'
   
 end

@@ -1,0 +1,4 @@
+<%= form_with model: @project, local:true, method: :patch do |f|%>
+        <%= f.number_field :project_id, value: @project.id, type: :hidden%>
+        <%= f.submit 'Finalize' %>
+<% end %>
