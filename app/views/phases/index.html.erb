@@ -2,7 +2,7 @@
 <%= link_to 'New Phase', new_project_phase_path(@project, @phase)%>
 </div>
 
-<table>
+
 
 <table>
     <tr>
@@ -17,7 +17,7 @@
 
     <% @project.phases.each do |phase| %>
     <tr>
-        <td><%= phase.step %></td>
+        <td><%= phase.step %><td>
         <% if phase.start_time == nil %>
             <td><%= render partial: '/phases/form_start', locals: { phase: phase } %></td>
         <% end %>
@@ -33,4 +33,4 @@
     <% end %>
 </table>
 
-<%= Time.now %>
+

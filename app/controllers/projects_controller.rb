@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
     def index
         @projects = current_user.projects
+        @projectxx = Project.where(intent:'xx')
     end
 
     def new

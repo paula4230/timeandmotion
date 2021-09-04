@@ -1,10 +1,20 @@
+<div>
 <%= link_to 'Add Project', new_project_path%>
-<% @projects.each do |p| %>
-    <%= p.id %>
-    <%= p.RxC %>
-    <%= p.state %>
-    <%= p.workflow_date %>
-    <%= p.ticket_level %>
-    <%= p.notes %>
+</div>
 
+<table>
+<% @projects.each do |p| %>
+    <tr>
+    <td><%= p.id %></td>
+    <td><%= link_to p.RxC, project_phases_path(p.id) %></td>
+    <td><%= p.project_type %></td>
+    <td><%= p.intent %></td>
+    <td><%= p.classification %></td>
+    <td><%= p.state %></td>
+    <td><%= p.workflow_date %></td>
+    <td><%= p.ticket_level %></td>
+    <td><%= p.notes %></td>
+    </tr>
 <% end %>
+
+</table>

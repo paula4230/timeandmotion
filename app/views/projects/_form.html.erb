@@ -7,7 +7,7 @@
 
     <div>
         <%= f.label :project_type %>
-        <%= f.text_area :project_type %>
+        <%= f.select :project_type, ['','NPB-New Plan Build', 'NPB-Maintenance', 'ASO-New Plan Build', 'ASO-Maintenance', 'EHB-New Plan Build', 'EHB-Maintenance', 'NIHP-New Plan Build', 'NIHP-Maintenance', 'RMHP-New Plan Build', 'RMHP-Maintenance', 'Correction Ticket', 'Non-PhBIT Maintenance', 'Inquiry', 'Internal Ticket', 'HDL'] %>
     </div>
 
     <div >
@@ -17,12 +17,12 @@
 
     <div>
         <%= f.label :ticket_level %>
-        <%= f.number_field :ticket_level %>
+        <%= f.select :ticket_level, ['','1','2','3','4','5'] %>
     </div>
 
     <div>
         <%= f.label :classification %>
-        <%= f.text_area :classification %>
+        <%= f.select :classification, ['','Pre-tool', 'Post-tool', 'General'] %>
     </div>
 
     <div>

@@ -1,8 +1,13 @@
 
 <%= form_with scope: :phase, model: [@project, @phase], local:true do |f|%>
-      <div class="field-task">
+    <div class="field-task">
         <%= f.label :step %>
-        <%= f.select :step, ['Planning and Reviewing','Implementation', 'Undergoing HDL', 'Testing and Validation'] %>
+        <%= f.select :step, ['Planning and Reviewing','Implementation', 'Undergoing HDL', 'Testing and Validation', 'Undergoing IQR', 'Completed', 'Others' ] %>
+    </div>
+
+    <div class="field-task">
+        <%= f.label "Phase Comparison ID" %>
+        <%= f.number_field :phase_comparison_id %>
     </div>
 
     <div class="field-task">
