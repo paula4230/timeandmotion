@@ -15,5 +15,8 @@ Rails.application.routes.draw do
 
   get '/pages/projects', to: 'pages#index' 
   get '/pages/projects/:project_id/phases', to: 'project_allphases#index' , :as => 'project_allphases'
+
+  get '/query_project' => 'pages#query_project'
+  get '/query_phase' => 'pages#query_phase'
   
 end

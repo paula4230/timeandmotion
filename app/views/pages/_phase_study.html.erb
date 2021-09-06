@@ -1,0 +1,9 @@
+<%= form_with(url: query_phase_path, method: 'get', local: true) do %>
+    <div>
+    <%= label_tag :intent, 'Get Data for Phase Study'%>
+    </div>
+    <%= text_field_tag :intent, nil, class: '.form-blank-input' %>
+    <div>
+    <%= button_tag 'Generate' %>
+    </div>
+<% end %>
