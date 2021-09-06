@@ -5,9 +5,7 @@
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>   
 
     <%if current_user.admin == true%>
-        <% @allprojects.each do |a|%>
-            <%= a.RxC %>
-        <%end%>
+        <%= link_to 'View All Projects', pages_projects_path %>   
     <%end%>
 
 <%else%>

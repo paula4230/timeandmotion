@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   patch '/projects/:project_id/phases/:id' => 'phases#update_end', :as => 'update_end'
   patch '/projects/:project_id/phases/:id' => 'phases#update_start', :as => 'update_start'
-  
   patch '/projects/:project_id' => 'projects#finalize_phases', :as => 'finalize_phases'
+
+  get '/pages/projects', to: 'pages#index' 
+  get '/pages/projects/:project_id/phases', to: 'project_allphases#index' , :as => 'project_allphases'
   
 end

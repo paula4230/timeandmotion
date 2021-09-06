@@ -1,0 +1,14 @@
+<% @allprojects.each do |a|%>
+
+<table>
+    <tr>
+        <td><%= link_to a.RxC, project_allphases_path(a.id) %></td>
+        <td><%= a.intent %></td>   
+    </tr>
+
+</table>
+<%end%>
+
+
+
+<%=@totalprojects%>
