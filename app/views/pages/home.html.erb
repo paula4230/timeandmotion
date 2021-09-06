@@ -6,6 +6,13 @@
 
     <%if current_user.admin == true%>
         <%= link_to 'View All Projects', pages_projects_path %>   
+
+        <%= render '/pages/project_study'%>
+        <%= bar_chart @intent, download: true %> 
+
+        <%= render '/pages/phase_study' %>
+        <%= bar_chart @phase_list, download: true%> 
+        
     <%end%>
 
 <%else%>
