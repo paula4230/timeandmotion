@@ -1,0 +1,21 @@
+<%= @userproject.RxC %>
+<%= @userproject.intent %>
+<%= @userproject.classification %>
+<%= @userproject.project_type %>
+<%= @userproject.state %>
+<%= @userproject.hours_spent %>
+
+<%= @ifirst_name %>
+<%= @ilast_name %>
+
+
+<% @all_phases.each do |ph| %>
+<table>
+    <tr>    
+        <td><%= ph.step%></td>
+        <td><%= ph.start_time%></td>
+        <td><%= ph.end_time%></td>
+        <td><%= ph.durationinmin%></td>
+    <tr>
+</table>
+<%end%>
