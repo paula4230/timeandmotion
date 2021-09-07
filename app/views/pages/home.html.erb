@@ -3,9 +3,12 @@
 
 <%if current_user%>
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>   
+    <%= link_to 'Update Info', edit_user_registration_path %>  
+    <%= Time.current.in_time_zone(current_user.time_zone) %>
 
     <%if current_user.admin == true%>
         <%= link_to 'View All Projects', pages_projects_path %>   
+        
 
         <%= render '/pages/project_study'%>
         <%= bar_chart @intent, download: true %> 

@@ -21,7 +21,7 @@
         <% if phase.start_time == nil %>
             <td><%= render partial: '/phases/form_start', locals: { phase: phase } %></td>
         <% end %>
-        <td><%= phase.start_time %></td>
+        <td><%= phase.start_time.in_time_zone(current_user.time_zone) %></td>
         <% if phase.end_time == nil && phase.start_time != nil %>
             <td><%= render partial: '/phases/form_end', locals: { phase: phase } %></td>
         <% end %>
