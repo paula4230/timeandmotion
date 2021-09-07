@@ -6,6 +6,7 @@ class PhasesController < ApplicationController
 
     def index
         @phases = @project.phases
+        
         @sum = @phases.group(:project_id).sum(:durationinmin)
         @final = @sum.values
     end 
