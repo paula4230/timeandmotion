@@ -2,6 +2,14 @@
 <%= link_to 'New Phase', new_project_phase_path(@project, @phase)%>
 </div>
 
+    <%= @project.RxC %>
+    <%= @project.classification %>
+    <%= @project.project_type %>
+    <%= @project.state %>
+    <%= @project.ticket_level %>
+    <% if @project.hours_spent != nil %>
+        <%= @project.hours_spent.ceil(2) %>
+    <% end %>
 
 
 <table>
@@ -9,11 +17,12 @@
         <td>Step</td>
         <td></td>
         <td>Start Time</td>
-        <td></td>
         <td>End Time</td>
         <td>Duration (min)</td>
         <td>Remarks</td>
     </tr>
+
+    
 
     <% @project.phases.each do |phase| %>
     <tr>
@@ -25,7 +34,7 @@
         <% if phase.end_time == nil && phase.start_time != nil %>
             <td><%= render partial: '/phases/form_end', locals: { phase: phase } %></td>
         <% end %>
-        <td><%= phase.end_time %></td>
+        <td><%= phase.end_time.in_time_zone(current_user.time_zone) %></td>
         <td><%= phase.durationinmin %></td>
         <td><%= phase.remarks %></td>
         <td><%= phase.id %></td>
@@ -33,6 +42,9 @@
     <% end %>
 
 </table>
-Total in Mins: <%= @final[0] %>
+Total in Mins: 
+<% if @final != nil %>
+    <%= @final[0].ceil(2) %>
+<% end %>
 <td><%= render partial: '/phases/finalize_phases', locals: { project: @project } %></td>
 
