@@ -8,7 +8,7 @@
 
     <%if current_user.admin == true%>
         <%= link_to 'View All Projects', pages_projects_path %>   
-        
+        <%= link_to 'Categories', categories_path %> 
 
         <%= render '/pages/project_study'%>
         <%= bar_chart @intent, download: true %> 

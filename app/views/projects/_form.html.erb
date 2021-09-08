@@ -27,7 +27,7 @@
 
     <div>
         <%= f.label :intent %>
-        <%= f.text_area :intent %>
+        <%= f.collection_select :intent, Category.order(:intent), :intent, :intent %>
     </div>
 
     <div>

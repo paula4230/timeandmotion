@@ -1,6 +1,6 @@
-# class Category < ApplicationRecord
-#     belongs_to :user
+class Category < ApplicationRecord
+    belongs_to :user
 
-#     has_many :projects
-#     has_many :phases
-# end
+    has_many :projects
+    has_many :phases
+end

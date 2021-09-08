@@ -43,7 +43,7 @@
 
 </table>
 Total in Mins: 
-<% if @final != nil %>
+<% if @final[0] != nil %>
     <%= @final[0].ceil(2) %>
 <% end %>
 <td><%= render partial: '/phases/finalize_phases', locals: { project: @project } %></td>
