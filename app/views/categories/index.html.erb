@@ -5,7 +5,7 @@
     <% @categories.each do |category| %>
     <tr>
         <td>
-            <%= category.intent%>
+            <%= link_to category.intent, category_steps_path(category.id)%>
             <%= category.status%>
             <%= category.due%>
         </td>

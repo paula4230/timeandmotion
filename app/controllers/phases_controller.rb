@@ -1,6 +1,11 @@
 class PhasesController < ApplicationController
     before_action :authenticate_user!
     before_action :get_project
+    before_action :get_intent
+    before_action :get_category
+    before_action :get_step, only: %i[ new ]
+
+    
     before_action :is_current_user, only: %i[ update_start update_end ]
 
 
@@ -13,6 +18,10 @@ class PhasesController < ApplicationController
 
     def new
         @phase = @project.phases.build
+    end
+
+    def get_step
+        @steps = @category.steps
     end
 
     def create        
@@ -51,7 +60,6 @@ class PhasesController < ApplicationController
             end
         end 
     end    
-
     
     private
 
@@ -71,6 +79,14 @@ class PhasesController < ApplicationController
 
     def phase_params
         params.require(:phase).permit(:step, :start_time, :end_time, :durationinmin, :remarks, :project_id, :user_id)
+    end
+
+    def get_intent      
+        @project_intent = current_user.projects.find(params[:project_id]).intent
+    end
+
+    def get_category
+        @category = Category.find_by(intent: @project_intent)
     end
 
 end

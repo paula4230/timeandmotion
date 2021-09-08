@@ -27,14 +27,18 @@
     <% @project.phases.each do |phase| %>
     <tr>
         <td><%= phase.step %><td>
-        <% if phase.start_time == nil %>
+        <% if phase.start_time != nil %>
             <td><%= render partial: '/phases/form_start', locals: { phase: phase } %></td>
         <% end %>
-        <td><%= phase.start_time.in_time_zone(current_user.time_zone) %></td>
+        <% if phase.start_time != nil %>
+            <td><%= phase.start_time.in_time_zone(current_user.time_zone) %></td>
+        <% end %>
         <% if phase.end_time == nil && phase.start_time != nil %>
             <td><%= render partial: '/phases/form_end', locals: { phase: phase } %></td>
         <% end %>
-        <td><%= phase.end_time.in_time_zone(current_user.time_zone) %></td>
+        <% if phase.end_time != nil %>
+            <td><%= phase.end_time.in_time_zone(current_user.time_zone) %></td>
+        <% end %>
         <td><%= phase.durationinmin %></td>
         <td><%= phase.remarks %></td>
         <td><%= phase.id %></td>

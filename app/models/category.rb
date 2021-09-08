@@ -1,6 +1,5 @@
 class Category < ApplicationRecord
     belongs_to :user
 
-    has_many :projects
-    has_many :phases
+    has_many :steps
 end

@@ -1,8 +1,8 @@
 
-<%= form_with scope: :phase, model: [@project, @phase], local:true do |f|%>
+<%= form_with scope: :step, model: [@category, @step], local:true do |f|%>
     <div class="field-task">
-        <%= f.label :step %>
-        <%= f.collection_select :step, @steps.order(:title), :title, :title %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
     </div>
 
     <div class="field-task">
