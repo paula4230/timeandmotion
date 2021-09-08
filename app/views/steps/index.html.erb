@@ -1,0 +1,5 @@
+<%= link_to 'Add Step', new_category_step_path(@category)%>
+
+<% @steps.each do |s| %>
+    <%= s.title %>
+<% end %>

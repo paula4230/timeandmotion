@@ -11,7 +11,6 @@ class CategoriesController < ApplicationController
     end 
 
     def create
-        byebug
         @category = Category.create(category_params)
       
         if @category.save
