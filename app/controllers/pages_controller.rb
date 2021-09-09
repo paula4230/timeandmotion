@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
+    before_action :authenticate_user!
 
     def home
         @allprojects = Project.all
-        @intent = Project.where(intent: 'PMTA Enhancement')
+        # @intent = Project.where(intent: 'PMTA Enhancement')
         @allphases = Phase.all
     end
 
@@ -20,7 +21,6 @@ class PagesController < ApplicationController
     end
 
     def query_phase
-        byebug
         @projects = Project.where(intent: params[:intent])
 
         @projects.each do |p|

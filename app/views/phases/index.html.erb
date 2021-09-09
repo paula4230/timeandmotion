@@ -27,7 +27,7 @@
     <% @project.phases.each do |phase| %>
     <tr>
         <td><%= phase.step %><td>
-        <% if phase.start_time != nil %>
+        <% if phase.start_time == nil %>
             <td><%= render partial: '/phases/form_start', locals: { phase: phase } %></td>
         <% end %>
         <% if phase.start_time != nil %>
