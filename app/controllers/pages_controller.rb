@@ -28,7 +28,7 @@ class PagesController < ApplicationController
             @phase_list = Phase.where(project_id: p.id).group(:step).average(:durationinmin)
         end
 
-        if @projects
+        if @phase_list
             render :home
         end 
     end
