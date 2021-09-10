@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
     def index
         @projects = current_user.projects
+        @project_count = @projects.count
     end
 
     def new

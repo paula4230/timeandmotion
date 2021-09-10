@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
     before_action :authenticate_user!
+    before_action :query_phase, only: %i[ home ]
 
     def home
         @allprojects = Project.all
@@ -26,7 +27,6 @@ class PagesController < ApplicationController
         @projects.each do |p|
             @phase_list = Phase.where(project_id: p.id).group(:step).average(:durationinmin)
         end
-
 
         if @projects
             render :home

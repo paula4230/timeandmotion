@@ -1,4 +1,7 @@
 <div>
+    <%= link_to 'Back to Projects', projects_path%>
+</div>
+<div>
 <%= link_to 'New Phase', new_project_phase_path(@project, @phase)%>
 </div>
 
@@ -11,44 +14,66 @@
         <%= @project.hours_spent.ceil(2) %>
     <% end %>
 
-
-<table>
-    <tr>
-        <td>Step</td>
-        <td></td>
-        <td>Start Time</td>
-        <td>End Time</td>
-        <td>Duration (min)</td>
-        <td>Remarks</td>
-    </tr>
-
-    
-
-    <% @project.phases.each do |phase| %>
-    <tr>
-        <td><%= phase.step %><td>
-        <% if phase.start_time == nil %>
-            <td><%= render partial: '/phases/form_start', locals: { phase: phase } %></td>
-        <% end %>
-        <% if phase.start_time != nil %>
-            <td><%= phase.start_time.in_time_zone(current_user.time_zone) %></td>
-        <% end %>
-        <% if phase.end_time == nil && phase.start_time != nil %>
-            <td><%= render partial: '/phases/form_end', locals: { phase: phase } %></td>
-        <% end %>
-        <% if phase.end_time != nil %>
-            <td><%= phase.end_time.in_time_zone(current_user.time_zone) %></td>
-        <% end %>
-        <td><%= phase.durationinmin %></td>
-        <td><%= phase.remarks %></td>
-        <td><%= phase.id %></td>
-    </tr>
-    <% end %>
-
-</table>
 Total in Mins: 
 <% if @final[0] != nil %>
     <%= @final[0].ceil(2) %>
 <% end %>
+
 <td><%= render partial: '/phases/finalize_phases', locals: { project: @project } %></td>
 
+<main>
+<div class="container-fluid px-4">
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Phases
+    </div>
+    <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+            <div class='dataTable-container'>
+                <table id="datatablesSimple" class="dataTable-table">
+                    <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Duration (min)</td>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                    <tr>
+                    <% @project.phases.each do |phase| %>
+                
+                    <td><%= phase.step %></td>
+                    <td>
+                    <% if phase.start_time != nil %>
+                        <%= phase.start_time.in_time_zone(current_user.time_zone) %>
+                    <%else%>
+                        <%= render partial: '/phases/form_start', locals: { phase: phase } %>
+                    </td>
+                    <% end %>
+                    <td>
+                    <% if phase.end_time == nil && phase.start_time != nil %>
+                        <%= render partial: '/phases/form_end', locals: { phase: phase } %>
+                    <% elsif phase.end_time != nil %>
+                        <%= phase.end_time.in_time_zone(current_user.time_zone) %>
+                    <% end %>
+                    </td>
+                    <% if phase.durationinmin != nil %>
+                        <td><%= phase.durationinmin.ceil(2) %></td>
+                    <% end %>
+                    <td><%= phase.remarks %></td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
+</div> 
+</main>

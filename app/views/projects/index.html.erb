@@ -1,23 +1,74 @@
-<div>
-<%= link_to 'Add Project', new_project_path%>
-</div>
+<main>
+    <div class="container-fluid px-4">
+        <div><%= link_to 'Add Project', new_project_path%></div>
 
-<table>
-<% @projects.each do |p| %>
-    <tr>
-    <td><%= p.id %></td>
-    <td><%= link_to p.RxC, project_phases_path(p.id) %></td>
-    <td><%= p.project_type %></td>
-    <td><%= p.intent %></td>
-    <td><%= p.classification %></td>
-    <td><%= p.state %></td>
-    <td><%= p.workflow_date %></td>
-    <td><%= p.ticket_level %></td>
-    <td><%= p.hours_spent %></td>
-    <td><%= p.notes %></td>
-    </tr>
-<% end %>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Projects by User
+            </div>
+            <div class="card-body">
+                <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                    <div class='dataTable-top'>
+                        <div class='dataTable-dropdown'>
+                            <label>
+                                <select class= 'dataTable-selector'>
+                                    <option value ='10'>10</option>
+                                    <option value ='15'>15</option>
+                                    <option value ='20'>20</option>
+                                </select>
+                                'entries per page'
+                            <label>
+                        </div>
+                    </div>
 
-</table>
+                    <div class='dataTable-container'>
+                        <table id="datatablesSimple" class="dataTable-table">
+                        <thead>
+                        <tr>
+                            <th>RxC</th>
+                            <th>Project Type</th>
+                            <th>Intent</th>
+                            <th>Classification</th>
+                            <th>State date</th>
+                            <th>Workflow Date</th>
+                            <th>Ticket Level</th>
+                            <th>Hours Spent</th>
+                        </tr>
+                        </thead>
 
-<%= @sum %>
+
+                        <tbody>
+                        <% @projects.each do |p| %>
+                            <tr>
+                                <td><%= link_to p.RxC, project_phases_path(p.id) %></td>
+                                <td><%= p.project_type %></td>
+                                <td><%= p.intent %></td>
+                                <td><%= p.classification %></td>
+                                <td><%= p.state %></td>
+                                <td><%= p.workflow_date %></td>
+                                <td><%= p.ticket_level %></td>
+                                <% if p.hours_spent != nil%>
+                                    <td><%= p.hours_spent.ceil(2) %></td>
+                                <% else %>
+                                    <td>0</td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class='dataTable-bottom'>
+                        <div class="dataTable-info"> <%= @project_count %> entries</div>
+                        <nav class = 'dataTable-pagination'>
+                            <ul></ul>
+                        </nav>
+                        
+                    </div>
+                        
+                </div> 
+            </div>
+        </div> 
+    </div> 
+</main>
+

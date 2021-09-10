@@ -1,25 +1,66 @@
-<h1>Pages#home</h1>
+    <%if current_user%>
+            <h1 class="mt-4">Dashboard</h1>    
+            <%if current_user.admin == false%>
+                <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <div><%= link_to 'View Projects', projects_path, class:'each_card_text' %></div>   
+                    </div>
+                </div>
+                </div>
+                
+            <%end%> 
+            <%if current_user.admin == true%>
+        <ol class="breadcrumb mb-4">
+            
+            <li class="breadcrumb-item active">Admin</li>
+        </ol>
 
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body"><%= link_to 'T&M Categories', categories_path, class:'each_card_text' %> </div>
+                </div>
+            </div>
 
-<%if current_user%>
-    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>   
-    <%= link_to 'Update Info', edit_user_registration_path %>  
-    <%= Time.current.in_time_zone(current_user.time_zone) %>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body"><%= link_to 'All Projects', pages_projects_path, class:'each_card_text' %>  </div>
+                </div>
+            </div>
 
-    <%if current_user.admin == false%>
-        <%= link_to 'View Projects', projects_path %>  
-    <%end%> 
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body"><%= link_to 'Generated Reports', categories_path, class:'each_card_text' %>  </div>
+                </div>
+            </div>
 
-    <%if current_user.admin == true%>
-        <%= link_to 'View All Projects', pages_projects_path %>   
-        <%= link_to 'Categories', categories_path %> 
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body"><%= link_to 'Administrators', categories_path, class:'each_card_text' %></div>   
+                </div>
+            </div>
+        </div>
+            
+        <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                        <%= render '/pages/project_study'%>
+                </div>
+               
+                <%= bar_chart @intent, download: true %>
+                </div>
+        </div>
 
-        <%= render '/pages/project_study'%>
-        <%= bar_chart @intent, download: true %> 
-
-        <%= render '/pages/phase_study' %>
-        <%= bar_chart @phase_list, download: true%> 
-        
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <%= render '/pages/phase_study' %>
+                </div>
+                    <%= bar_chart @phase_list, download: true%> 
+            </div>
+        </div>
     <%end%>
 
 <%else%>
