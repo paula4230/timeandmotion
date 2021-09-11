@@ -1,5 +1,52 @@
-<%= link_to 'Add Step', new_category_step_path(@category)%>
+<main>
+  <div class="container-fluid px-4">
+    <div> 
+      <%= link_to 'Add Step', new_category_step_path(@category)%>
+    </div>
 
-<% @steps.each do |s| %>
-    <%= s.title %>
-<% end %>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+          Steps by Category 
+      </div>
+
+      <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+          <div class='dataTable-top'>
+            <div class='dataTable-dropdown'>
+              <label>
+                <select class= 'dataTable-selector'>
+                  <option value ='10'>10</option>
+                  <option value ='15'>15</option>
+                  <option value ='20'>20</option>
+                </select>
+                'entries per page'
+              <label>
+            </div>
+          </div>
+          <div class='dataTable-container'> 
+            <table id="datatablesSimple" class="dataTable-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @steps.each do |s| %>
+                <tr>
+                  <td><%= s.title %></td>
+
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+</main>
+
