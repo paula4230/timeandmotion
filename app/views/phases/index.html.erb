@@ -1,28 +1,33 @@
 <div>
     <%= link_to 'Back to Projects', projects_path%>
 </div>
-<div>
-<%= link_to 'New Phase', new_project_phase_path(@project, @phase)%>
-</div>
+    <div class= 'phase-rxc'>
+        <h3><%= @project.RxC %></h3>
+    </div>
 
-    <%= @project.RxC %>
-    <%= @project.classification %>
-    <%= @project.project_type %>
-    <%= @project.state %>
-    <%= @project.ticket_level %>
-    <% if @project.hours_spent != nil %>
-        <%= @project.hours_spent.ceil(2) %>
-    <% end %>
-
-Total in Mins: 
-<% if @final[0] != nil %>
-    <%= @final[0].ceil(2) %>
-<% end %>
-
-<td><%= render partial: '/phases/finalize_phases', locals: { project: @project } %></td>
+    <%= @project.classification %> 
+    <%= @project.project_type %> 
+    <%= @project.state %> 
+    <%= @project.ticket_level %> 
 
 <main>
 <div class="container-fluid px-4">
+    <div class ='container-finalize-phases'>
+        <div class ='add-items-link'>
+            <div>
+                <%# <%= link_to 'New Phase', new_project_phase_path(@project, @phase)%>
+                <%= render partial: '/phases/form', locals: { phase: @phase } %>
+            </div>
+        </div>
+
+        <td>
+            Running Total in Mins: 
+            <% if @final[0] != nil %>
+                <%= @final[0].ceil(2) %>
+            <% end %>
+            <%= render partial: '/phases/finalize_phases', locals: { project: @project } %>
+        </td>
+    </div>
 
 
 <div class="card mb-4">
@@ -71,6 +76,9 @@ Total in Mins:
                     <% end %>
                     </tbody>
                 </table>
+                <% if @project.hours_spent != nil %>
+                    Final Total in Hours: <%= @project.hours_spent.ceil(2) %>
+                <% end %>
             </div>
         </div>
     </div>

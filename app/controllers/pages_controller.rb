@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
     before_action :authenticate_user!
-    before_action :query_phase, only: %i[ home ]
+    after_action :home, only: %i[ query_phase ]
 
     def home
         @allprojects = Project.all
@@ -28,9 +28,11 @@ class PagesController < ApplicationController
             @phase_list = Phase.where(project_id: p.id).group(:step).average(:durationinmin)
         end
 
-        if @phase_list
+        if @projects
             render :home
-        end 
+        end
+
+         
     end
 
     # def query_ticket_level

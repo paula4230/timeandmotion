@@ -3,7 +3,7 @@ class PhasesController < ApplicationController
     before_action :get_project
     before_action :get_intent
     before_action :get_category
-    before_action :get_step, only: %i[ new ]
+    before_action :get_step, only: %i[ index new ]
 
     
     before_action :is_current_user, only: %i[ update_start update_end ]

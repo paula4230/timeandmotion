@@ -235,8 +235,10 @@ sup {
 
 a {
   color: #0d6efd;
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight:bolder
 }
+
 a:hover {
   color: #0a58ca;
 }
@@ -375,7 +377,9 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
+  /* -webkit-appearance: button; */
+  background-color:black;
+  color:white
 }
 button:not(:disabled),
 [type=button]:not(:disabled),

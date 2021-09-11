@@ -14,3 +14,26 @@
  *= require_self
  */
 
+ .add-items-link{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .add-items-link-1{
+    margin-bottom: 2vmin;
+ }
+
+ .container-finalize-phases{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+ }
+
+ .phase-rxc{
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+ }
+
+
